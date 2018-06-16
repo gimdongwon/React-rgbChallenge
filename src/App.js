@@ -10,17 +10,23 @@ class App extends Component {
   randomColorCode() {
     return `rgb(${this.randomNumber()}, ${this.randomNumber()}, ${this.randomNumber()})`;
   }
-  boxes = [
-    this.randomColorCode(),
-    this.randomColorCode(),
-    this.randomColorCode()
-  ];
+
   state = {
     count: 0,
     page: "game",
-    answerColor: this.boxes[Math.floor(Math.random() * 3)]
+    answerColor: ``,
+    boxes: []
   };
-  correctAnswer = e => {
+  newStage = () => {
+    this.state.boxes = [
+      this.randomColorCode(),
+      this.randomColorCode(),
+      this.randomColorCode()
+    ];
+    this.state.answerColor = this.state.boxes[Math.floor(Math.random() * 3)];
+  };
+
+  answer = e => {
     this.state.answerColor === e.target.style.backgroundColor
       ? this.setState({ page: "answerPage", count: this.state.count + 1 })
       : this.setState({
@@ -29,6 +35,8 @@ class App extends Component {
         });
   };
   play = e => {
+    // window.location.reload();
+    this.newStage();
     this.setState({
       page: "game",
       count: e.target.value === "incorrect" ? 0 : this.state.count
@@ -37,7 +45,7 @@ class App extends Component {
 
   render() {
     const { count, page } = this.state;
-
+    this.newStage(); // 이 부분의 사용법을 깨달음
     return (
       <div>
         {page === "game" ? (
@@ -46,22 +54,19 @@ class App extends Component {
             <div>count : {count} </div>
             <div className="answer">{this.state.answerColor}</div>
             <div
-              onClick={this.correctAnswer}
-              style={{ backgroundColor: `${this.boxes[0]}` }}
+              onClick={this.answer}
+              style={{ backgroundColor: `${this.state.boxes[0]}` }}
               className="boxes"
-              value={this.boxes[0]}
             />
             <div
-              onClick={this.correctAnswer}
-              style={{ backgroundColor: `${this.boxes[1]}` }}
+              onClick={this.answer}
+              style={{ backgroundColor: `${this.state.boxes[1]}` }}
               className="boxes"
-              value={this.boxes[1]}
             />
             <div
-              onClick={this.correctAnswer}
-              style={{ backgroundColor: `${this.boxes[2]}` }}
+              onClick={this.answer}
+              style={{ backgroundColor: `${this.state.boxes[2]}` }}
               className="boxes"
-              value={this.boxes[2]}
             />
           </div>
         ) : (
