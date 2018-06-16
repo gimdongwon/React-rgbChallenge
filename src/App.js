@@ -6,6 +6,12 @@ import Goodanswerpage from "./Pages/goodAnswerPage";
 import Gamecomponent from "./Components/Gamecomponent";
 
 class App extends Component {
+  state = {
+    count: 0,
+    page: "game",
+    answerColor: ``,
+    boxes: []
+  };
   randomNumber() {
     return Math.round(Math.random() * 255);
   }
@@ -14,12 +20,6 @@ class App extends Component {
     return `rgb(${this.randomNumber()}, ${this.randomNumber()}, ${this.randomNumber()})`;
   }
 
-  state = {
-    count: 0,
-    page: "game",
-    answerColor: ``,
-    boxes: []
-  };
   newStage = () => {
     this.state.boxes = [
       this.randomColorCode(),
@@ -47,14 +47,14 @@ class App extends Component {
   };
 
   render() {
-    const { count, page } = this.state;
+    const { page } = this.state;
     this.newStage(); // 이 부분의 사용법을 깨달음
     return (
       <div>
         {page === "game" ? (
           <Gamecomponent
             count={this.state.count}
-            answer={this.answer}
+            answerColor={this.state.answerColor}
             boxes={this.state.boxes}
             answer={this.answer}
           />

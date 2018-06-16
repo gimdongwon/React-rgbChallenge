@@ -2,10 +2,40 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
+    color: white
 }
 
 .boxes {
     width: 70px;
     height: 70px;
     border-radius: 50%;
+    margin-right: 10px;
+}
+
+.boxes-items {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: #181818;
+    padding-bottom: 500px
+}
+
+.boxes-header {
+    background-color: #4983B2;
+    text-align: center;
+    padding: 50px
+}
+
+.answer {
+    color: #fff;
+    text-align: center;
+    background-color: #181818;
+    padding: 50px
+}
+
+.answerPage {
+    text-align: center;
+    background-color: #181818;
+    padding-top: 350px;
+    padding-bottom: 450px;
 }

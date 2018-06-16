@@ -1,28 +1,34 @@
 import React from "react";
-
+import { index } from "../index";
 export default class Gamecomponent extends React.Component {
   render() {
     const { count, answerColor, boxes, answer } = this.props;
     return (
       <div>
-        <h1>RGB Challenge</h1>
-        <div>count : {count} </div>
-        <div className="answer">{answerColor}</div>
-        <div
-          onClick={answer}
-          style={{ backgroundColor: `${boxes[0]}` }}
-          className="boxes"
-        />
-        <div
-          onClick={answer}
-          style={{ backgroundColor: `${boxes[1]}` }}
-          className="boxes"
-        />
-        <div
-          onClick={answer}
-          style={{ backgroundColor: `${boxes[2]}` }}
-          className="boxes"
-        />
+        <div className="boxes-header">
+          <h1>RGB Challenge</h1>
+          <div>count : {count} </div>
+        </div>
+        <div className="answer">
+          <h1>{answerColor}</h1>
+        </div>
+        <div className="boxes-items">
+          <div
+            onClick={answer}
+            style={{ backgroundColor: `${boxes[0]}` }}
+            className="boxes"
+          />
+          <div
+            onClick={answer}
+            style={{ backgroundColor: `${boxes[1]}` }}
+            className="boxes"
+          />
+          <div
+            onClick={answer}
+            style={{ backgroundColor: `${boxes[2]}` }}
+            className="boxes"
+          />
+        </div>
       </div>
     );
   }
