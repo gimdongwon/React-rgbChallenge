@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+
 import "./App.css";
+import Badanswerpage from "./Pages/badAnswerPage";
+import Goodanswerpage from "./Pages/goodAnswerPage";
+import Gamecomponent from "./Components/Gamecomponent";
 
 class App extends Component {
   randomNumber() {
@@ -49,44 +52,18 @@ class App extends Component {
     return (
       <div>
         {page === "game" ? (
-          <div>
-            <h1>RGB Challenge</h1>
-            <div>count : {count} </div>
-            <div className="answer">{this.state.answerColor}</div>
-            <div
-              onClick={this.answer}
-              style={{ backgroundColor: `${this.state.boxes[0]}` }}
-              className="boxes"
-            />
-            <div
-              onClick={this.answer}
-              style={{ backgroundColor: `${this.state.boxes[1]}` }}
-              className="boxes"
-            />
-            <div
-              onClick={this.answer}
-              style={{ backgroundColor: `${this.state.boxes[2]}` }}
-              className="boxes"
-            />
-          </div>
+          <Gamecomponent
+            count={this.state.count}
+            answer={this.answer}
+            boxes={this.state.boxes}
+            answer={this.answer}
+          />
         ) : (
           <div>
             {page === "answerPage" ? (
-              <div>
-                <h1>That's great</h1>
-                <div>Present score : {count}</div>
-                <button onClick={this.play} value="correct">
-                  Next color
-                </button>
-              </div>
+              <Goodanswerpage count={this.state.count} play={this.play} />
             ) : (
-              <div>
-                <h1>That's too bad</h1>
-                <div>Final score : {count}</div>
-                <button onClick={this.play} value="incorrect">
-                  Play Again
-                </button>
-              </div>
+              <Badanswerpage count={this.state.count} play={this.play} />
             )}
           </div>
         )}
