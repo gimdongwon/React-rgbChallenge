@@ -1,5 +1,5 @@
 import React from "react";
-import { index } from "../index";
+
 export default class Gamecomponent extends React.Component {
   render() {
     const { count, answerColor, boxes, answer } = this.props;

@@ -12,6 +12,10 @@ class App extends Component {
     answerColor: ``,
     boxes: []
   };
+
+  componentDidMount() {
+    this.newStage();
+  }
   randomNumber() {
     return Math.round(Math.random() * 255);
   }
@@ -21,12 +25,14 @@ class App extends Component {
   }
 
   newStage = () => {
-    this.state.boxes = [
-      this.randomColorCode(),
-      this.randomColorCode(),
-      this.randomColorCode()
-    ];
-    this.state.answerColor = this.state.boxes[Math.floor(Math.random() * 3)];
+    this.setState({
+      boxes: [
+        this.randomColorCode(),
+        this.randomColorCode(),
+        this.randomColorCode()
+      ],
+      answerColor: this.state.boxes[Math.floor(Math.random() * 3)]
+    });
   };
 
   answer = e => {
@@ -48,7 +54,7 @@ class App extends Component {
 
   render() {
     const { page } = this.state;
-    this.newStage(); // 이 부분의 사용법을 깨달음
+
     return (
       <div>
         {page === "game" ? (
