@@ -16,4 +16,5 @@
 - 상태를 바꿔주는 것은 setState를 이용해서만 바꿔주기
   - this.state를 이용해서 바꿔주는 것은 좋지 않고 위험하다
 - render함수안에 메소드를 사용하지 않기
-  - 생각 한것 외로 여러번 호출 될수 있기 때문이다. componentDidMount()인 lifeCycle API로 
+  - 생각 한것 외로 여러번 호출 될수 있기 때문이다. 
+  - componentDidMount()인 lifeCycle API로 해결 
