@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
 import "./App.css";
-import Badanswerpage from "./Pages/badAnswerPage";
-import Goodanswerpage from "./Pages/goodAnswerPage";
-import Gamecomponent from "./Components/Gamecomponent";
+import BadAnswerPage from "./Pages/BadAnswerPage";
+import GoodAnswerPage from "./Pages/GoodAnswerPage";
+import GameComponent from "./Components/GameComponent";
 
 class App extends Component {
   state = {
@@ -12,10 +12,6 @@ class App extends Component {
     answerColor: ``,
     boxes: []
   };
-
-  componentDidMount() {
-    this.newStage();
-  }
   randomNumber() {
     return Math.round(Math.random() * 255);
   }
@@ -25,14 +21,12 @@ class App extends Component {
   }
 
   newStage = () => {
-    this.setState({
-      boxes: [
-        this.randomColorCode(),
-        this.randomColorCode(),
-        this.randomColorCode()
-      ],
-      answerColor: this.state.boxes[Math.floor(Math.random() * 3)]
-    });
+    this.state.boxes = [
+      this.randomColorCode(),
+      this.randomColorCode(),
+      this.randomColorCode()
+    ];
+    this.state.answerColor = this.state.boxes[Math.floor(Math.random() * 3)];
   };
 
   answer = e => {
@@ -51,14 +45,19 @@ class App extends Component {
       count: e.target.value === "incorrect" ? 0 : this.state.count
     });
   };
-
+  // componentDidMount() {
+  //   this.setState();
+  // }
+  componentWillMount() {
+    this.newStage();
+  }
   render() {
     const { page } = this.state;
 
     return (
       <div>
         {page === "game" ? (
-          <Gamecomponent
+          <GameComponent
             count={this.state.count}
             answerColor={this.state.answerColor}
             boxes={this.state.boxes}
@@ -67,9 +66,9 @@ class App extends Component {
         ) : (
           <div>
             {page === "answerPage" ? (
-              <Goodanswerpage count={this.state.count} play={this.play} />
+              <GoodAnswerPage count={this.state.count} play={this.play} />
             ) : (
-              <Badanswerpage count={this.state.count} play={this.play} />
+              <BadAnswerPage count={this.state.count} play={this.play} />
             )}
           </div>
         )}

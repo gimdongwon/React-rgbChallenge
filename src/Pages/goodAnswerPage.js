@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class Goodanswerpage extends React.Component {
+export default class GoodAnswerPage extends React.Component {
   render() {
     const { count, play } = this.props;
     return (
