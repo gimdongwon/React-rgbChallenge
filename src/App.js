@@ -21,12 +21,15 @@ class App extends Component {
   }
 
   newStage = () => {
-    this.state.boxes = [
+    const boxes = [
       this.randomColorCode(),
       this.randomColorCode(),
       this.randomColorCode()
     ];
-    this.state.answerColor = this.state.boxes[Math.floor(Math.random() * 3)];
+    this.setState({
+      boxes,
+      answerColor: boxes[Math.floor(Math.random() * 3)]
+    });
   };
 
   answer = e => {
@@ -45,15 +48,12 @@ class App extends Component {
       count: e.target.value === "incorrect" ? 0 : this.state.count
     });
   };
-  // componentDidMount() {
-  //   this.setState();
-  // }
-  componentWillMount() {
+  componentDidMount() {
     this.newStage();
   }
+
   render() {
     const { page } = this.state;
-
     return (
       <div>
         {page === "game" ? (
